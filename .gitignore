@@ -14,12 +14,12 @@
 
 ~*.*
 ~*.*
-build/
-debug/
-dist/
-disassembly/
-.generated_files/
-nbproject/private/
+build
+debug
+dist
+disassembly
+.generated_files
+nbproject/private
 nbproject/*.mk
 nbproject/*.bash
 nbproject/Makefile-genesis.properties
