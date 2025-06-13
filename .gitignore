@@ -12,6 +12,18 @@
 **/*.X/nbproject/*.bash
 **/*.X/nbproject/Makefile-genesis.properties
 
+~*.*
+~*.*
+build/
+debug/
+dist/
+disassembly/
+.generated_files/
+nbproject/private/
+nbproject/*.mk
+nbproject/*.bash
+nbproject/Makefile-genesis.properties
+
 # Object files
 *.o
 *.ko
