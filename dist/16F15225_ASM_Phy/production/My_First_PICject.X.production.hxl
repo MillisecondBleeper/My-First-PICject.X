@@ -10,12 +10,12 @@
 ### Memory Usage ###
  Intel Hex-file ranges:
   0h - 3h		(dist/16F15225_ASM_Phy/production\My_First_PICject.X.production.hex)
-  8h - DBh		(dist/16F15225_ASM_Phy/production\My_First_PICject.X.production.hex)
+  8h - DDh		(dist/16F15225_ASM_Phy/production\My_First_PICject.X.production.hex)
   10000h - 10007h		(dist/16F15225_ASM_Phy/production\My_First_PICject.X.production.hex)
   1000Eh - 10017h		(dist/16F15225_ASM_Phy/production\My_First_PICject.X.production.hex)
  Filled ROM ranges:
   4h - 7h		(-FILL=0x3FFF@0:0x7FF,data)
-  DCh - DFh		(-FILL=0x3FFF@0:0x7FF,data)
+  DEh - DFh		(-FILL=0x3FFF@0:0x7FF,data)
  Unused ranges:
   E0h - FFFFh
   10008h - 1000Dh
@@ -41,7 +41,7 @@
 000000A0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 000000B0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 000000C0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-000000D0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 F1 F1 F1 F1
+000000D0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 F1 F1
 ----------------------------------------------------------
 00010000 | H1 H1 H1 H1 H1 H1 H1 H1 -- -- -- -- -- -- H1 H1
 00010010 | H1 H1 H1 H1 H1 H1 H1 H1 -- -- -- -- -- -- -- --

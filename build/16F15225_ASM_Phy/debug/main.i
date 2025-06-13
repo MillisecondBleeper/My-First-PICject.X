@@ -4,6 +4,7 @@
 PROCESSOR 16F15223
 
 
+
 CONFIG FEXTOSC = OFF
 CONFIG RSTOSC = HFINTOSC_32MHZ
 CONFIG CLKOUTEN = OFF
@@ -32,6 +33,7 @@ CONFIG LVP = ON
 
 
 CONFIG CP = OFF
+
 
 # 1 "G:\\Software\\Microchip\\xc8\\v2.36\\pic\\include\\xc.inc" 1 3
 
@@ -5389,7 +5391,8 @@ stk_offset SET 0
 auto_size SET 0
 ENDM
 # 7 "G:\\Software\\Microchip\\xc8\\v2.36\\pic\\include\\xc.inc" 2 3
-# 33 "main.asm" 2
+# 35 "main.asm" 2
+
 
 PSECT reset_vec,class=CODE,delta=2
 reset_vec:
@@ -5405,12 +5408,12 @@ int_ret:
 handle_adif:
  bcf ((PIR1) and 07Fh), 0
  call setupret
- call merge_adc_ret_250
+ call merge_adc_ret_lim
  incf adtoggle
  movf adtoggle, w
  andlw 0xFC
  btfsc ((STATUS) and 07Fh), 2
- bra no_pwm
+ bra no_pwm3
  clrf adtoggle
  BANKSEL(PWM3DCL)
  movf reth, w
@@ -5418,30 +5421,37 @@ handle_adif:
  movf retl, w
  movwf PWM3DCL
  bra handle_adif_return
-no_pwm:
+no_pwm3:
  BANKSEL(PWM3DCL)
  clrf PWM3DCH
  clrf PWM3DCL
 handle_adif_return:
+ BANKSEL(PWM4DCL)
+ movf reth, w
+ movwf PWM4DCH
+ movf retl, w
+ movwf PWM4DCL
  return
+
+
 setupret:
- movlw 170>>2
+ movlw (170 >> 2) & 0xFF
  movwf reth
- movlw ( 170& 0x03 ) << 6
+ movlw ( 170 & 0x03 ) << 6
  movwf retl
  return
 
-merge_adc_ret_250:
+merge_adc_ret_lim:
  BANKSEL(ADRESH)
  movf ADRESH, w
  movwf b_reg
- movlw 250
+ movlw 213
  subwf b_reg, w
  btfss ((STATUS) and 07Fh), 0
- bra merge_adc_ret_250_not
- movlw 250
+ bra merge_adc_ret_lim_not
+ movlw 213
  movwf b_reg
-merge_adc_ret_250_not:
+merge_adc_ret_lim_not:
  clrw
  bcf ((STATUS) and 07Fh), 0
  rrf b_reg
@@ -5463,16 +5473,22 @@ PSECT init,class=CODE,delta=2
  BANKSEL(RC3PPS)
  movlw 0x03
  movwf RC3PPS
+ movlw 0x04
+ movwf RC4PPS
  BANKSEL(TRISC)
  bcf ((TRISC) and 07Fh), 3
+ bcf ((TRISC) and 07Fh), 4
  BANKSEL(ANSELC)
  bcf ((ANSELC) and 07Fh), 3
+ bcf ((ANSELC) and 07Fh), 4
  movlw 0
  addlw 1
  bra -2
 pwm_setup:
+
  BANKSEL(PWM3CON)
  clrf ((PWM3CON) and 07Fh)
+ clrf ((PWM4CON) and 07Fh)
  BANKSEL(T2PR)
  movlw 0xFF
  movwf T2PR
@@ -5480,17 +5496,20 @@ pwm_setup:
  movlw 0x80
  movwf ((PWM3DCH) and 07Fh)
  clrf ((PWM3DCL) and 07Fh)
+ movwf ((PWM4DCH) and 07Fh)
+ clrf ((PWM4DCL) and 07Fh)
  BANKSEL(PIR1)
  bcf ((PIR1) and 07Fh), 6
  BANKSEL(T2PR)
  movlw 0b001
  movwf T2CLKCON
- movlw 0b10000100
+ movlw 0b00000000
  movwf T2HLT
  movlw 0b11110000
  movwf T2CON
  BANKSEL(PWM3CON)
  bsf ((PWM3CON) and 07Fh), 7
+ bsf ((PWM4CON) and 07Fh), 7
  return
 adc_setup:
  BANKSEL(TRISC)
@@ -5522,13 +5541,7 @@ adtoggle:
  DS 1
 b_reg:
  DS 1
-
-
-
-
-
-
-
+# 192 "main.asm"
 PSECT userid,class=IDLOC,delta=2,noexec,global
  userid:
  DW ( (('H') << 7) | ('e') ), ( (('l') << 7) | ('l') ), ( (('o') << 7) | ('r') ), ( (('l') << 7) | ('d') )

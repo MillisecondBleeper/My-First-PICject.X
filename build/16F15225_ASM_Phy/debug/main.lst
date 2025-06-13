@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.36 build 20220127204148 
-                                                                                                           Thu Jun 12 20:54:16 2025
+                                                                                                           Fri Jun 13 14:15:35 2025
 
 
      1                           	processor	16F15223
@@ -52,7 +52,7 @@ Microchip MPLAB XC8 Assembler V2.36 build 20220127204148
     46                           	psect	reset_vec
     47  0000                     reset_vec:
     48  0000  3180               	pagesel	init
-    49  0001  2831               	goto	init
+    49  0001  2836               	goto	init
     50                           
     51                           	psect	intentry
     52  0004                     int_vec:
@@ -63,13 +63,13 @@ Microchip MPLAB XC8 Assembler V2.36 build 20220127204148
     57  0007  0009               	retfie
     58  0008                     handle_adif:
     59  0008  100D               	bcf	13,0
-    60  0009  201B               	call	setupret
-    61  000A  2020               	call	merge_adc_ret_250
+    60  0009  2020               	call	setupret
+    61  000A  2025               	call	merge_adc_ret_lim
     62  000B  0AF2               	incf	adtoggle,f
     63  000C  0872               	movf	adtoggle,w
     64  000D  39FC               	andlw	252
     65  000E  1903               	btfsc	3,2
-    66  000F  3207               	bra	no_pwm
+    66  000F  3207               	bra	no_pwm3
     67  0010  01F2               	clrf	adtoggle
     68  0011  0146               	banksel	788
     69  0012  0870               	movf	reth,w
@@ -77,175 +77,189 @@ Microchip MPLAB XC8 Assembler V2.36 build 20220127204148
     71  0014  0871               	movf	retl,w
     72  0015  0094               	movwf	788
     73  0016  3203               	bra	handle_adif_return
-    74  0017                     no_pwm:
+    74  0017                     no_pwm3:
     75  0017  0146               	banksel	788
     76  0018  0195               	clrf	789
     77  0019  0194               	clrf	788
     78  001A                     handle_adif_return:
-    79  001A  0008               	return
-    80  001B                     setupret:
-    81  001B  302A               	movlw	42
-    82  001C  00F0               	movwf	reth
-    83  001D  3080               	movlw	128
-    84  001E  00F1               	movwf	retl
-    85  001F  0008               	return
-    86  0020                     merge_adc_ret_250:
-    87  0020  0141               	banksel	156
-    88  0021  081C               	movf	156,w
-    89  0022  00F3               	movwf	b_reg
-    90  0023  30FA               	movlw	250
-    91  0024  0273               	subwf	b_reg,w
-    92  0025  1C03               	btfss	3,0
-    93  0026  3202               	bra	merge_adc_ret_250_not
-    94  0027  30FA               	movlw	250
-    95  0028  00F3               	movwf	b_reg
-    96  0029                     merge_adc_ret_250_not:
-    97  0029  0103               	clrw
-    98  002A  1003               	bcf	3,0
-    99  002B  0CF3               	rrf	b_reg,f
-   100  002C  0C89               	rrf	9,f
-   101  002D  07F1               	addwf	retl,f
-   102  002E  0873               	movf	b_reg,w
-   103  002F  3DF0               	addwfc	reth,f
-   104  0030  0008               	return
-   105                           
-   106                           	psect	init
-   107  0031                     init:
-   108  0031  203D               	call	pwm_setup
-   109  0032  2052               	call	adc_setup
-   110  0033  017E               	banksel	7971
-   111  0034  3003               	movlw	3
-   112  0035  00A3               	movwf	7971
-   113  0036  0140               	banksel	20
-   114  0037  1194               	bcf	20,3
-   115  0038  017E               	banksel	8014
-   116  0039  11CE               	bcf	78,3
-   117  003A  3000               	movlw	0
-   118  003B  3E01               	addlw	1
-   119  003C  33FE               	bra	-2
-   120  003D                     pwm_setup:
-   121  003D  0146               	banksel	790
-   122  003E  0196               	clrf	22
-   123  003F  0145               	banksel	653
-   124  0040  30FF               	movlw	255
-   125  0041  008D               	movwf	653
-   126  0042  0146               	banksel	789
-   127  0043  3080               	movlw	128
-   128  0044  0095               	movwf	21
-   129  0045  0194               	clrf	20
-   130  0046  014E               	banksel	1805
-   131  0047  130D               	bcf	13,6
-   132  0048  0145               	banksel	653
-   133  0049  3001               	movlw	1
-   134  004A  0090               	movwf	656
-   135  004B  3084               	movlw	132
-   136  004C  008F               	movwf	655
-   137  004D  30F0               	movlw	240
-   138  004E  008E               	movwf	654
-   139  004F  0146               	banksel	790
-   140  0050  1796               	bsf	22,7
-   141  0051  0008               	return
-   142  0052                     adc_setup:
-   143  0052  0140               	banksel	20
-   144  0053  1514               	bsf	20,2
-   145  0054  017E               	banksel	8014
-   146  0055  154E               	bsf	78,2
-   147  0056  0141               	banksel	157
-   148  0057  3049               	movlw	73
-   149  0058  009D               	movwf	157
-   150  0059  3060               	movlw	96
-   151  005A  009E               	movwf	158
-   152  005B  3004               	movlw	4
-   153  005C  009F               	movwf	159
-   154  005D  014E               	banksel	1804
-   155  005E  1417               	bsf	23,0
-   156  005F  170B               	bsf	11,6
-   157  0060  178B               	bsf	11,7
-   158  0061  0008               	return
-   159                           
-   160                           	psect	userid
-   161  8000                     userid:
-   162  8000  2465 366C 37F2 3664 	dw	9317,13932,14322,13924
-   163                           
-   164                           	psect	config
-   165                           
-   166                           ;Config register CONFIG1 @ 0x8007
-   167                           ;	External Oscillator Mode Selection bits
-   168                           ;	FEXTOSC = OFF, Oscillator not enabled
-   169                           ;	Power-up Default Value for COSC bits
-   170                           ;	RSTOSC = HFINTOSC_32MHZ, HFINTOSC (32 MHz)
-   171                           ;	Clock Out Enable bit
-   172                           ;	CLKOUTEN = OFF, CLKOUT function is disabled; I/O function on RA4
-   173                           ;	VDD Range Analog Calibration Selection bit
-   174                           ;	VDDAR = LO, Internal analog systems are calibrated for operation between VDD = 1.8V - 3.6V
-   175  8007                     	org	32775
-   176  8007  2FCD               	dw	12237
-   177                           
-   178                           ;Config register CONFIG2 @ 0x8008
-   179                           ;	Master Clear Enable bit
-   180                           ;	MCLRE = EXTMCLR, If LVP = 0, MCLR pin is MCLR; If LVP = 1, RA3 pin function is MCLR
-   181                           ;	Power-up Timer Selection bits
-   182                           ;	PWRTS = PWRT_OFF, PWRT is disabled
-   183                           ;	WDT Operating Mode bits
-   184                           ;	WDTE = OFF, WDT disabled; SEN is ignored
-   185                           ;	Brown-out Reset Enable bits
-   186                           ;	BOREN = ON, Brown-out Reset Enabled, SBOREN bit is ignored
-   187                           ;	Brown-out Reset Voltage Selection bit
-   188                           ;	BORV = LO, Brown-out Reset Voltage (VBOR) set to 1.9V
-   189                           ;	PPSLOCKED One-Way Set Enable bit
-   190                           ;	PPS1WAY = ON, The PPSLOCKED bit can be set once after an unlocking sequence is executed; once PPSL
+    79  001A  0146               	banksel	792
+    80  001B  0870               	movf	reth,w
+    81  001C  0099               	movwf	793
+    82  001D  0871               	movf	retl,w
+    83  001E  0098               	movwf	792
+    84  001F  0008               	return
+    85  0020                     setupret:
+    86  0020  302A               	movlw	42
+    87  0021  00F0               	movwf	reth
+    88  0022  3080               	movlw	128
+    89  0023  00F1               	movwf	retl
+    90  0024  0008               	return
+    91  0025                     merge_adc_ret_lim:
+    92  0025  0141               	banksel	156
+    93  0026  081C               	movf	156,w
+    94  0027  00F3               	movwf	b_reg
+    95  0028  30D5               	movlw	213
+    96  0029  0273               	subwf	b_reg,w
+    97  002A  1C03               	btfss	3,0
+    98  002B  3202               	bra	merge_adc_ret_lim_not
+    99  002C  30D5               	movlw	213
+   100  002D  00F3               	movwf	b_reg
+   101  002E                     merge_adc_ret_lim_not:
+   102  002E  0103               	clrw
+   103  002F  1003               	bcf	3,0
+   104  0030  0CF3               	rrf	b_reg,f
+   105  0031  0C89               	rrf	9,f
+   106  0032  07F1               	addwf	retl,f
+   107  0033  0873               	movf	b_reg,w
+   108  0034  3DF0               	addwfc	reth,f
+   109  0035  0008               	return
+   110                           
+   111                           	psect	init
+   112  0036                     init:
+   113  0036  2046               	call	pwm_setup
+   114  0037  205F               	call	adc_setup
+   115  0038  017E               	banksel	7971
+   116  0039  3003               	movlw	3
+   117  003A  00A3               	movwf	7971
+   118  003B  3004               	movlw	4
+   119  003C  00A4               	movwf	7972
+   120  003D  0140               	banksel	20
+   121  003E  1194               	bcf	20,3
+   122  003F  1214               	bcf	20,4
+   123  0040  017E               	banksel	8014
+   124  0041  11CE               	bcf	78,3
+   125  0042  124E               	bcf	78,4
+   126  0043  3000               	movlw	0
+   127  0044  3E01               	addlw	1
+   128  0045  33FE               	bra	-2
+   129  0046                     pwm_setup:
+   130  0046  0146               	banksel	790
+   131  0047  0196               	clrf	22
+   132  0048  019A               	clrf	26
+   133  0049  0145               	banksel	653
+   134  004A  30FF               	movlw	255
+   135  004B  008D               	movwf	653
+   136  004C  0146               	banksel	789
+   137  004D  3080               	movlw	128
+   138  004E  0095               	movwf	21
+   139  004F  0194               	clrf	20
+   140  0050  0099               	movwf	25
+   141  0051  0198               	clrf	24
+   142  0052  014E               	banksel	1805
+   143  0053  130D               	bcf	13,6
+   144  0054  0145               	banksel	653
+   145  0055  3001               	movlw	1
+   146  0056  0090               	movwf	656
+   147  0057  3000               	movlw	0
+   148  0058  008F               	movwf	655
+   149  0059  30F0               	movlw	240
+   150  005A  008E               	movwf	654
+   151  005B  0146               	banksel	790
+   152  005C  1796               	bsf	22,7
+   153  005D  179A               	bsf	26,7
+   154  005E  0008               	return
+   155  005F                     adc_setup:
+   156  005F  0140               	banksel	20
+   157  0060  1514               	bsf	20,2
+   158  0061  017E               	banksel	8014
+   159  0062  154E               	bsf	78,2
+   160  0063  0141               	banksel	157
+   161  0064  3049               	movlw	73
+   162  0065  009D               	movwf	157
+   163  0066  3060               	movlw	96
+   164  0067  009E               	movwf	158
+   165  0068  3004               	movlw	4
+   166  0069  009F               	movwf	159
+   167  006A  014E               	banksel	1804
+   168  006B  1417               	bsf	23,0
+   169  006C  170B               	bsf	11,6
+   170  006D  178B               	bsf	11,7
+   171  006E  0008               	return
+   172                           
+   173                           	psect	userid
+   174  8000                     userid:
+   175  8000  2465 366C 37F2 3664 	dw	9317,13932,14322,13924
+   176                           
+   177                           	psect	config
+   178                           
+   179                           ;Config register CONFIG1 @ 0x8007
+   180                           ;	External Oscillator Mode Selection bits
+   181                           ;	FEXTOSC = OFF, Oscillator not enabled
+   182                           ;	Power-up Default Value for COSC bits
+   183                           ;	RSTOSC = HFINTOSC_32MHZ, HFINTOSC (32 MHz)
+   184                           ;	Clock Out Enable bit
+   185                           ;	CLKOUTEN = OFF, CLKOUT function is disabled; I/O function on RA4
+   186                           ;	VDD Range Analog Calibration Selection bit
+   187                           ;	VDDAR = LO, Internal analog systems are calibrated for operation between VDD = 1.8V - 3.6V
+   188  8007                     	org	32775
+   189  8007  2FCD               	dw	12237
+   190                           
+   191                           ;Config register CONFIG2 @ 0x8008
+   192                           ;	Master Clear Enable bit
+   193                           ;	MCLRE = EXTMCLR, If LVP = 0, MCLR pin is MCLR; If LVP = 1, RA3 pin function is MCLR
+   194                           ;	Power-up Timer Selection bits
+   195                           ;	PWRTS = PWRT_OFF, PWRT is disabled
+   196                           ;	WDT Operating Mode bits
+   197                           ;	WDTE = OFF, WDT disabled; SEN is ignored
+   198                           ;	Brown-out Reset Enable bits
+   199                           ;	BOREN = ON, Brown-out Reset Enabled, SBOREN bit is ignored
+   200                           ;	Brown-out Reset Voltage Selection bit
+   201                           ;	BORV = LO, Brown-out Reset Voltage (VBOR) set to 1.9V
+   202                           ;	PPSLOCKED One-Way Set Enable bit
+   203                           ;	PPS1WAY = ON, The PPSLOCKED bit can be set once after an unlocking sequence is executed; once PPSL
       +                          OCKED is set, all future changes to PPS registers are prevented
-   191                           ;	Stack Overflow/Underflow Reset Enable bit
-   192                           ;	STVREN = OFF, Stack Overflow or Underflow will not cause a reset
-   193  8008                     	org	32776
-   194  8008  2FE7               	dw	12263
-   195                           
-   196                           ;Config register CONFIG3 @ 0x8009
-   197                           ;	unspecified, using default values
-   198  8009                     	org	32777
-   199  8009  3FFF               	dw	16383
-   200                           
-   201                           ;Config register CONFIG4 @ 0x800A
-   202                           ;	Boot Block Size Selection bits
-   203                           ;	BBSIZE = BB512, 512 words boot block size
-   204                           ;	Boot Block Enable bit
-   205                           ;	BBEN = OFF, Boot Block is disabled
-   206                           ;	SAF Enable bit
-   207                           ;	SAFEN = OFF, SAF is disabled
-   208                           ;	Application Block Write Protection bit
-   209                           ;	WRTAPP = OFF, Application Block is not write-protected
-   210                           ;	Boot Block Write Protection bit
-   211                           ;	WRTB = OFF, Boot Block is not write-protected
-   212                           ;	Configuration Registers Write Protection bit
-   213                           ;	WRTC = OFF, Configuration Registers are not write-protected
-   214                           ;	Storage Area Flash (SAF) Write Protection bit
-   215                           ;	WRTSAF = OFF, SAF is not write-protected
-   216                           ;	Low Voltage Programming Enable bit
-   217                           ;	LVP = ON, Low Voltage programming enabled. MCLR/Vpp pin function is MCLR. MCLRE Configuration bit 
+   204                           ;	Stack Overflow/Underflow Reset Enable bit
+   205                           ;	STVREN = OFF, Stack Overflow or Underflow will not cause a reset
+   206  8008                     	org	32776
+   207  8008  2FE7               	dw	12263
+   208                           
+   209                           ;Config register CONFIG3 @ 0x8009
+   210                           ;	unspecified, using default values
+   211  8009                     	org	32777
+   212  8009  3FFF               	dw	16383
+   213                           
+   214                           ;Config register CONFIG4 @ 0x800A
+   215                           ;	Boot Block Size Selection bits
+   216                           ;	BBSIZE = BB512, 512 words boot block size
+   217                           ;	Boot Block Enable bit
+   218                           ;	BBEN = OFF, Boot Block is disabled
+   219                           ;	SAF Enable bit
+   220                           ;	SAFEN = OFF, SAF is disabled
+   221                           ;	Application Block Write Protection bit
+   222                           ;	WRTAPP = OFF, Application Block is not write-protected
+   223                           ;	Boot Block Write Protection bit
+   224                           ;	WRTB = OFF, Boot Block is not write-protected
+   225                           ;	Configuration Registers Write Protection bit
+   226                           ;	WRTC = OFF, Configuration Registers are not write-protected
+   227                           ;	Storage Area Flash (SAF) Write Protection bit
+   228                           ;	WRTSAF = OFF, SAF is not write-protected
+   229                           ;	Low Voltage Programming Enable bit
+   230                           ;	LVP = ON, Low Voltage programming enabled. MCLR/Vpp pin function is MCLR. MCLRE Configuration bit 
       +                          is ignored.
-   218  800A                     	org	32778
-   219  800A  3FFF               	dw	16383
-   220                           
-   221                           ;Config register CONFIG5 @ 0x800B
-   222                           ;	User Program Flash Memory Code Protection bit
-   223                           ;	CP = OFF, User Program Flash Memory code protection is disabled
-   224  800B                     	org	32779
-   225  800B  3FFF               	dw	16383
+   231  800A                     	org	32778
+   232  800A  3FFF               	dw	16383
+   233                           
+   234                           ;Config register CONFIG5 @ 0x800B
+   235                           ;	User Program Flash Memory Code Protection bit
+   236                           ;	CP = OFF, User Program Flash Memory code protection is disabled
+   237  800B                     	org	32779
+   238  800B  3FFF               	dw	16383
 
 
 Microchip Technology PIC Macro Assembler V2.36 build 20220127204148 
-Symbol Table                                                                                               Thu Jun 12 20:54:16 2025
+Symbol Table                                                                                               Fri Jun 13 14:15:35 2025
 
-               merge_adc_ret_250 0020                              T2PR 028D                              PIE1 0717  
+               merge_adc_ret_lim 0025                              T2PR 028D                              PIE1 0717  
                             PIR0 070C                              PIR1 070D                              WREG 0009  
-                            init 0031                              reth 0070                              retl 0071  
+                            init 0036                              reth 0070                              retl 0071  
                            ADACT 009F                             T2CON 028E                             T2HLT 028F  
                            TRISC 0014                             b_reg 0073                            ADCON0 009D  
                           ADCON1 009E                            ADRESH 009C                            ANSELC 1F4E  
-                          RC3PPS 1F23                            INTCON 000B                            STATUS 0003  
-                          no_pwm 0017                            userid 8000                handle_adif_return 001A  
-           merge_adc_ret_250_not 0029                           PWM3DCH 0315                           PWM3DCL 0314  
-                         PWM3CON 0316                           int_vec 0004                           int_ret 0007  
-                        T2CLKCON 0290                          adtoggle 0072                          setupret 001B  
-                     handle_adif 0008                         adc_setup 0052                         reset_vec 0000  
-                       pwm_setup 003D  
+                          RC3PPS 1F23                            RC4PPS 1F24                            INTCON 000B  
+                          STATUS 0003                            userid 8000                handle_adif_return 001A  
+                         PWM3DCH 0315                           PWM3DCL 0314                           PWM4DCH 0319  
+                         PWM4DCL 0318                           PWM3CON 0316                           PWM4CON 031A  
+                         int_vec 0004                           int_ret 0007                           no_pwm3 0017  
+           merge_adc_ret_lim_not 002E                          T2CLKCON 0290                          adtoggle 0072  
+                        setupret 0020                       handle_adif 0008                         adc_setup 005F  
+                       reset_vec 0000                         pwm_setup 0046  

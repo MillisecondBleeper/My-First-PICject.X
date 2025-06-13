@@ -13,8 +13,8 @@
 %PSECTS
 $build/16F15225_ASM_Phy/debug/main.o
 userid IDLOC 0 8000 8000 4 2 1
-init CODE 0 31 31 31 2 1
-intentry CODE 0 4 4 2D 2 1
+init CODE 0 36 36 39 2 1
+intentry CODE 0 4 4 32 2 1
 reset_vec CODE 0 0 0 2 2 1
 udata_shr COMMON 1 70 70 4 1 1
 config CONFIG 4 8007 8007 5 2 1
@@ -31,9 +31,9 @@ BANK0 20-6F 1
 BANK1 A0-EF 1
 BANK2 120-16F 1
 CONST 2-3 2
-CONST 62-7FF 2
+CONST 6F-7FF 2
 ENTRY 2-3 2
-ENTRY 62-7FF 2
+ENTRY 6F-7FF 2
 SFR10 500-56F 1
 SFR11 580-5EF 1
 SFR12 600-66F 1
@@ -89,7 +89,7 @@ SFR61 1E80-1EEF 1
 SFR62 1F00-1F6F 1
 SFR63 1F80-1FEF 1
 CODE 2-3 2
-CODE 62-7FF 2
+CODE 6F-7FF 2
 SFR0 4-7 1
 SFR2 100-11F 1
 SFR3 180-1EF 1
@@ -102,9 +102,9 @@ SFR9 480-4EF 1
 BIGRAM 2000-20EF 1
 COMMON 74-7F 1
 STRCODE 2-3 2
-STRCODE 62-7FF 2
+STRCODE 6F-7FF 2
 STRING 2-3 2
-STRING 62-7FF 2
+STRING 6F-7FF 2
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
 # The beginning of the section is indicated by %LINETAB.
@@ -119,102 +119,115 @@ STRING 62-7FF 2
 # All other numeric values are in decimal.
 %LINETAB
 $build/16F15225_ASM_Phy/debug/main.o
-31 init CODE >101:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-32 init CODE >102:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-33 init CODE >103:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-34 init CODE >104:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-35 init CODE >105:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-36 init CODE >106:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-37 init CODE >107:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-38 init CODE >108:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-39 init CODE >109:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-3A init CODE >110:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-3B init CODE >111:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-3C init CODE >112:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-3D init CODE >114:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-3E init CODE >115:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-3F init CODE >116:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-40 init CODE >117:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-41 init CODE >118:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-42 init CODE >119:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-43 init CODE >120:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-44 init CODE >121:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-45 init CODE >122:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-46 init CODE >123:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-47 init CODE >124:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-48 init CODE >125:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-49 init CODE >126:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-4A init CODE >127:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-4B init CODE >128:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-4C init CODE >129:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-4D init CODE >130:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-4E init CODE >131:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-4F init CODE >132:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-50 init CODE >133:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-51 init CODE >134:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-52 init CODE >136:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-53 init CODE >137:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-54 init CODE >138:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-55 init CODE >139:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-56 init CODE >140:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-57 init CODE >141:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-58 init CODE >142:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-59 init CODE >143:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-5A init CODE >144:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-5B init CODE >145:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-5C init CODE >146:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-5D init CODE >147:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-5E init CODE >148:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-5F init CODE >149:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-60 init CODE >150:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-61 init CODE >151:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-4 intentry CODE >40:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-5 intentry CODE >41:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-6 intentry CODE >42:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-7 intentry CODE >44:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-8 intentry CODE >46:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-9 intentry CODE >47:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-A intentry CODE >48:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-B intentry CODE >49:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-C intentry CODE >50:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-D intentry CODE >51:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-E intentry CODE >52:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-F intentry CODE >53:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-10 intentry CODE >54:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-11 intentry CODE >55:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-12 intentry CODE >56:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-13 intentry CODE >57:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-14 intentry CODE >58:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-15 intentry CODE >59:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-16 intentry CODE >60:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-17 intentry CODE >62:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-18 intentry CODE >63:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-19 intentry CODE >64:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-1A intentry CODE >66:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-1B intentry CODE >68:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-1C intentry CODE >69:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-1D intentry CODE >70:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-1E intentry CODE >71:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-1F intentry CODE >72:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-20 intentry CODE >75:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-21 intentry CODE >76:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-22 intentry CODE >77:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-23 intentry CODE >78:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-24 intentry CODE >79:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-25 intentry CODE >80:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-26 intentry CODE >81:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-27 intentry CODE >82:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-28 intentry CODE >83:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-29 intentry CODE >85:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-2A intentry CODE >86:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-2B intentry CODE >87:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-2C intentry CODE >88:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-2D intentry CODE >89:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-2E intentry CODE >90:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-2F intentry CODE >91:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-30 intentry CODE >92:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-0 reset_vec CODE >36:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
-1 reset_vec CODE >37:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+36 init CODE >111:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+37 init CODE >112:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+38 init CODE >113:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+39 init CODE >114:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+3A init CODE >115:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+3B init CODE >116:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+3C init CODE >117:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+3D init CODE >118:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+3E init CODE >119:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+3F init CODE >120:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+40 init CODE >121:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+41 init CODE >122:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+42 init CODE >123:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+43 init CODE >124:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+44 init CODE >125:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+45 init CODE >126:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+46 init CODE >129:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+47 init CODE >130:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+48 init CODE >131:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+49 init CODE >132:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+4A init CODE >133:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+4B init CODE >134:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+4C init CODE >135:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+4D init CODE >136:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+4E init CODE >137:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+4F init CODE >138:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+50 init CODE >139:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+51 init CODE >140:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+52 init CODE >141:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+53 init CODE >142:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+54 init CODE >143:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+55 init CODE >144:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+56 init CODE >145:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+57 init CODE >146:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+58 init CODE >147:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+59 init CODE >148:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+5A init CODE >149:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+5B init CODE >150:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+5C init CODE >151:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+5D init CODE >152:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+5E init CODE >153:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+5F init CODE >155:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+60 init CODE >156:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+61 init CODE >157:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+62 init CODE >158:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+63 init CODE >159:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+64 init CODE >160:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+65 init CODE >161:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+66 init CODE >162:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+67 init CODE >163:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+68 init CODE >164:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+69 init CODE >165:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+6A init CODE >166:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+6B init CODE >167:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+6C init CODE >168:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+6D init CODE >169:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+6E init CODE >170:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+4 intentry CODE >43:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+5 intentry CODE >44:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+6 intentry CODE >45:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+7 intentry CODE >47:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+8 intentry CODE >49:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+9 intentry CODE >50:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+A intentry CODE >51:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+B intentry CODE >52:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+C intentry CODE >53:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+D intentry CODE >54:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+E intentry CODE >55:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+F intentry CODE >56:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+10 intentry CODE >57:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+11 intentry CODE >58:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+12 intentry CODE >59:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+13 intentry CODE >60:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+14 intentry CODE >61:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+15 intentry CODE >62:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+16 intentry CODE >63:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+17 intentry CODE >65:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+18 intentry CODE >66:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+19 intentry CODE >67:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+1A intentry CODE >69:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+1B intentry CODE >70:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+1C intentry CODE >71:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+1D intentry CODE >72:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+1E intentry CODE >73:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+1F intentry CODE >74:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+20 intentry CODE >78:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+21 intentry CODE >79:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+22 intentry CODE >80:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+23 intentry CODE >81:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+24 intentry CODE >82:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+25 intentry CODE >85:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+26 intentry CODE >86:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+27 intentry CODE >87:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+28 intentry CODE >88:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+29 intentry CODE >89:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+2A intentry CODE >90:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+2B intentry CODE >91:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+2C intentry CODE >92:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+2D intentry CODE >93:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+2E intentry CODE >95:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+2F intentry CODE >96:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+30 intentry CODE >97:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+31 intentry CODE >98:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+32 intentry CODE >99:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+33 intentry CODE >100:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+34 intentry CODE >101:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+35 intentry CODE >102:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+0 reset_vec CODE >39:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
+1 reset_vec CODE >40:C:\Users\USER_PRIME\MPLABXProjects\My First PICject.X\main.asm
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -242,10 +255,10 @@ __Lcinit 0 0 ABS 0 cinit -
 __Ludata 0 0 ABS 0 udata -
 __Hcode 0 0 ABS 0 code -
 __Hdata 0 0 ABS 0 data -
-__Hinit C4 0 CODE 0 init -
+__Hinit DE 0 CODE 0 init -
 __Lcode 0 0 ABS 0 code -
 __Ldata 0 0 ABS 0 data -
-__Linit 62 0 CODE 0 init -
+__Linit 6C 0 CODE 0 init -
 __S0 8004 0 ABS 0 - -
 __S1 74 0 ABS 0 - -
 __Lintentry 8 0 CODE 0 intentry -
@@ -254,8 +267,8 @@ __Lconfig 0 0 CONFIG 4 config -
 __Lspace_0 0 0 ABS 0 - -
 __Lspace_1 0 0 ABS 0 - -
 __Lspace_4 0 0 ABS 0 - -
-__Lend_init C4 0 CODE 0 end_init -
-__Hintentry 62 0 CODE 0 intentry -
+__Lend_init DE 0 CODE 0 end_init -
+__Hintentry 6C 0 CODE 0 intentry -
 __Hreset_vec 4 0 CODE 0 reset_vec -
 __Luserid 0 0 ABS 0 userid -
 __Lpowerup 0 0 ABS 0 powerup -
@@ -264,7 +277,7 @@ __Ludata_bank1 0 0 ABS 0 udata_bank1 -
 __Ludata_bank2 0 0 ABS 0 udata_bank2 -
 __Lreset_vec 0 0 CODE 0 reset_vec -
 __Lfunctab 0 0 ABS 0 functab -
-__Hend_init C4 0 CODE 0 end_init -
+__Hend_init DE 0 CODE 0 end_init -
 __Hudata_shr 0 0 ABS 0 udata_shr -
 __Ludata_shr 0 0 ABS 0 udata_shr -
 # %SPLITSTAB Section
@@ -292,7 +305,7 @@ __Ludata_shr 0 0 ABS 0 udata_shr -
 # All other numeric quantities are in decimal.
 %SEGMENTS
 userid 0 8000 10000 4 2
-intentry 0 4 8 5E 2
+intentry 0 4 8 6B 2
 reset_vec 0 0 0 2 2
 udata_shr 1 70 70 4 1
 # %NOTES Section

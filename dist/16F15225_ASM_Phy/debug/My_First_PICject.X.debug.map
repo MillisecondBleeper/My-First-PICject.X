@@ -5,7 +5,7 @@ Linker command line:
 -W-3 --edf=G:\Software\Microchip\xc8\v2.36\pic\dat\en_msgs.txt -cn \
   -h+dist/16F15225_ASM_Phy/debug\My_First_PICject.X.debug.sym \
   --cmf=dist/16F15225_ASM_Phy/debug\My_First_PICject.X.debug.cmf -z \
-  -Q16F15223 -oC:\Users\USER_P~1\AppData\Local\Temp\xcAs19f8.4 \
+  -Q16F15223 -oC:\Users\USER_P~1\AppData\Local\Temp\xcAs1l9s.4 \
   --defsym=__MPLAB_BUILD=1 \
   -Mdist/16F15225_ASM_Phy/debug/My_First_PICject.X.debug.map -E1 \
   -ver=XC8 Compiler --acfsm=1493 -ACODE=00h-07FFh -ASTRCODE=00h-07FFh \
@@ -50,15 +50,15 @@ Machine type is 16F15223
 build/16F15225_ASM_Phy/debug/main.o
                 config                             8007     8007        5        0       4
                 userid                             8000     8000        4    10000       0
-                init                                 31       31       31        8       0
-                intentry                              4        4       2D        8       0
+                init                                 36       36       39        8       0
+                intentry                              4        4       32        8       0
                 reset_vec                             0        0        2        0       0
                 udata_shr                            70       70        4       70       1
 
 TOTAL           Name                               Link     Load   Length     Space
         CLASS   CODE           
-                init                                 31       31       31         0
-                intentry                              4        4       2D         0
+                init                                 36       36       39         0
+                intentry                              4        4       32         0
                 reset_vec                             0        0        2         0
 
         CLASS   STRCODE        
@@ -223,7 +223,7 @@ TOTAL           Name                               Link     Load   Length     Sp
 SEGMENTS        Name                           Load    Length   Top    Selector   Space  Class     Delta
 
                 reset_vec                      000000  000002  000002         0       0  CODE        2
-                intentry                       000004  00005E  000062         8       0  CODE        2
+                intentry                       000004  00006B  00006F         8       0  CODE        2
                 udata_shr                      000070  000004  000074        70       1  COMMON      1
                 userid                         008000  000004  008004     10000       0  IDLOC       2
 
@@ -236,12 +236,12 @@ UNUSED ADDRESS RANGES
         BANK2            00120-0016F              50           1
         BIGRAM           02000-020EF              F0           1
         CODE             00002-00003               2           2
-                         00062-007FF             79E
+                         0006F-007FF             791
         COMMON           00074-0007F               C           1
         CONST            00002-00003               2           2
-                         00062-007FF             100
+                         0006F-007FF             100
         ENTRY            00002-00003               2           2
-                         00062-007FF             100
+                         0006F-007FF             100
         RAM              00020-0006F              50           1
                          000A0-000EF              50
                          00120-0016F              50
@@ -309,16 +309,16 @@ UNUSED ADDRESS RANGES
         SFR8             00400-0046F              70           1
         SFR9             00480-004EF              70           1
         STRCODE          00002-00003               2           2
-                         00062-007FF             79E
+                         0006F-007FF             791
         STRING           00002-00003               2           2
-                         00062-007FF             100
+                         0006F-007FF             100
 
                                   Symbol Table
 
 __Hcinit       cinit       00000  __Hcode        code        00000
 __Hconfig      config      0800C  __Hdata        data        00000
-__Hend_init    end_init    00062  __Hfunctab     functab     00000
-__Hinit        init        00062  __Hintentry    intentry    00031
+__Hend_init    end_init    0006F  __Hfunctab     functab     00000
+__Hinit        init        0006F  __Hintentry    intentry    00036
 __Hpowerup     powerup     00000  __Hreset_vec   reset_vec   00002
 __Hspace_0     (abs)       08004  __Hspace_1     (abs)       00074
 __Hspace_4     (abs)       10013  __Hudata       udata       00000
@@ -326,8 +326,8 @@ __Hudata_bank0 udata_bank0 00000  __Hudata_bank1 udata_bank1 00000
 __Hudata_bank2 udata_bank2 00000  __Hudata_shr   udata_shr   00000
 __Huserid      userid      00000  __Lcinit       cinit       00000
 __Lcode        code        00000  __Lconfig      config      00000
-__Ldata        data        00000  __Lend_init    end_init    00062
-__Lfunctab     functab     00000  __Linit        init        00031
+__Ldata        data        00000  __Lend_init    end_init    0006F
+__Lfunctab     functab     00000  __Linit        init        00036
 __Lintentry    intentry    00004  __Lpowerup     powerup     00000
 __Lreset_vec   reset_vec   00000  __Lspace_0     (abs)       00000
 __Lspace_1     (abs)       00000  __Lspace_4     (abs)       00000
