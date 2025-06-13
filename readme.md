@@ -1,0 +1,2 @@
+# This is a Demo Based on The PIC16F15223 Datasheet
+This project is designed to demosntrate the PWM and analogue input functionality of the PIC16F15223. It uses the PWM 3 and 4 to control a servo. They both recieve the same output, but PWM3 is 1/4 speed to reach the lower-speed analogue servo PWM spec.
