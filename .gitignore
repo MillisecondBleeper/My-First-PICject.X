@@ -12,6 +12,7 @@
 **/*.X/nbproject/*.bash
 **/*.X/nbproject/Makefile-genesis.properties
 
+#  MPLAB X IDE (Netbeans) specific but IDK why the above didn't work right.
 ~*.*
 ~*.*
 build
